@@ -1,0 +1,16 @@
+.MovieCarousel {
+    width: 100vw;
+    height: 80vh;
+    background-size: 100vw;
+    display: flex;
+    align-items: flex-end;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    height: 10vh;
+    width: 100vw;
+    background: linear-gradient(to bottom, transparent 0, black 100%);
+    padding: 0 30px;
+}
