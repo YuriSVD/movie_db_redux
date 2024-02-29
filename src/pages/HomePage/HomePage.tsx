@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
 
-import {Carousel, Movies, SearchForm} from "../components";
-import {movieService} from "../services";
-import {useAppContext} from "../hooks";
-import {movieActions} from "../reducers/movie.reducer";
+import {Carousel, Movies, SearchForm} from "../../components";
+import {useAppContext} from "../../hooks";
+import css from "./HomePage.module.css";
+import {movieActions} from "../../reducers";
+import {movieService} from "../../services";
 
 const HomePage = () => {
     const {state: {movies}, dispatch} = useAppContext();
@@ -16,7 +17,7 @@ const HomePage = () => {
     return (
         <div>
             <Carousel movies={movies}/>
-            <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+            <div className={css.movies}>
                 <SearchForm/>
                 <Movies movies={movies}/>
             </div>

@@ -4,14 +4,14 @@ import MovieIcon from '@mui/icons-material/Movie';
 import SearchIcon from '@mui/icons-material/Search';
 import React, {FC, useRef} from 'react';
 import {useNavigate} from "react-router-dom";
+import {SubmitHandler, useForm} from "react-hook-form";
 
+import {useAppContext} from "../../hooks";
+import {movieActions} from "../../reducers";
 import {Search} from "./Search.styled";
 import {SearchIconWrapper} from "./SearchIconWrapper.styled";
 import {StyledInputBaseStyled} from "./StyledInputBase.styled";
 import {ThemeSwitcher} from "../ThemeSwitcher";
-import {useAppContext} from "../../hooks";
-import {movieActions} from "../../reducers/movie.reducer";
-import {SubmitHandler, useForm} from "react-hook-form";
 
 interface IMovieTitle {
     movieTitle: string

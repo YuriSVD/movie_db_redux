@@ -1,10 +1,12 @@
-import React, {FC} from 'react';
-import {IMovie} from "../../interfaces";
-import {useNavigate} from "react-router-dom";
 import {Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material";
-import DummyPoster from "../../dummy_photos/dummy_poster.jpg";
+import React, {FC} from 'react';
+import {useNavigate} from "react-router-dom";
+
 import {posterURL, urls} from "../../configs";
+import DummyPoster from "../../dummy_photos/dummy_poster.jpg";
+import {IMovie} from "../../interfaces";
 import {ReleaseDate} from "../ReleaseDate";
+
 interface IProps {
     movie: IMovie;
 }

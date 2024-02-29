@@ -2,10 +2,10 @@ import React, {useEffect} from 'react';
 import {useSearchParams} from "react-router-dom";
 
 import {Genres, Movies, PaginationComponent} from "../../components";
+import {useAppContext} from "../../hooks";
 import css from "./MoviePage.module.css";
 import {movieService} from "../../services";
-import {useAppContext} from "../../hooks";
-import {movieActions} from "../../reducers/movie.reducer";
+import {movieActions} from "../../reducers";
 
 const MoviesPage = () => {
     const [query, setQuery] = useSearchParams({page: "1"});

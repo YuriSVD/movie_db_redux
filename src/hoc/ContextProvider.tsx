@@ -1,5 +1,6 @@
 import React, {createContext, Dispatch, FC, PropsWithChildren, useReducer} from 'react';
-import {IActions, IState, movieInitialState, movieReducer} from "../reducers/movie.reducer";
+
+import {IActions, IState, movieInitialState, movieReducer} from "../reducers";
 
 type IContext = {
     state: IState;

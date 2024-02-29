@@ -1,4 +1,6 @@
 .Genres {
     display: flex;
     flex-wrap: wrap;
+    padding: 1.04vw;
+    box-sizing: border-box;
 }

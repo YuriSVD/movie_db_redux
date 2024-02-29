@@ -1,9 +1,11 @@
 import React, {useEffect} from 'react';
-import {useAppContext} from "../hooks";
-import {personService} from "../services";
 import {useParams} from "react-router-dom";
-import {movieActions} from "../reducers/movie.reducer";
-import {CastMembers, CrewMembers} from "../components";
+
+import css from "./CastAndCrew.module.css";
+import {CastMembers, CrewMembers} from "../../components";
+import {useAppContext} from "../../hooks";
+import {movieActions} from "../../reducers";
+import {personService} from "../../services";
 
 const CastAndCrewPage = () => {
     const {movieId} = useParams();
@@ -17,7 +19,7 @@ const CastAndCrewPage = () => {
             })
     }, [dispatch, movieId]);
     return (
-        <div>
+        <div className={css.CastAndCrew}>
             <CastMembers/>
             <CrewMembers/>
         </div>

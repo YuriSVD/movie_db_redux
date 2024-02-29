@@ -1,8 +1,9 @@
-import React, {FC, useState} from 'react';
-import {IGenre} from "../../interfaces";
 import {Chip} from "@mui/material";
+import React, {FC, useState} from 'react';
+
 import {useAppContext} from "../../hooks";
-import {movieActions} from "../../reducers/movie.reducer";
+import {IGenre} from "../../interfaces";
+import {movieActions} from "../../reducers";
 
 interface IProps {
     genre: IGenre;

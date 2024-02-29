@@ -5,7 +5,7 @@ import {Genre} from "../Genre";
 import css from "./Genres.module.css"
 import {useAppContext} from "../../hooks";
 import {IGenre} from "../../interfaces";
-import {movieActions} from "../../reducers/movie.reducer";
+import {movieActions} from "../../reducers";
 import {genreService} from "../../services";
 
 const Genres: FC = () => {

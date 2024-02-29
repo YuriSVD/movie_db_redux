@@ -1,20 +1,19 @@
-import React, {FC} from 'react';
-import {ICastMember} from "../../interfaces";
-import {useNavigate} from "react-router-dom";
 import {Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material";
-import DummyPhoto from "../../dummy_photos/dummy_person.jpg";
+import React, {FC} from 'react';
+
 import {posterURL, urls} from "../../configs";
+import DummyPhoto from "../../dummy_photos/dummy_person.jpg";
+import {ICastMember} from "../../interfaces";
 
 interface IProps {
     castMember: ICastMember
 }
 
 const SelectedCastMember:FC<IProps> = ({castMember}) => {
-    const {id, name, profile_path, character} = castMember;
-    const navigate = useNavigate();
+    const {name, profile_path, character} = castMember;
     return (
         <Card sx={{maxWidth: "10.4vw", marginRight: "0.5vw"}}>
-            <CardActionArea>
+            <CardActionArea disabled>
                 <CardMedia sx={{height: "13.3vw"}}
                            component={"img"}
                            image={profile_path ? posterURL + urls.w300PosterSize + profile_path : DummyPhoto}

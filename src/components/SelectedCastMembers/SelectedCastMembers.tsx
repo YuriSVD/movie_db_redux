@@ -1,12 +1,13 @@
-import React, {useEffect} from 'react';
-import {useAppContext} from "../../hooks";
-import {personService} from "../../services";
-import {useNavigate, useParams} from "react-router-dom";
-import {movieActions} from "../../reducers/movie.reducer";
-import {SelectedCastMember} from "../SelectedCastMember";
-import {Button, Typography} from "@mui/material";
 import {KeyboardArrowRight} from "@mui/icons-material";
+import {Button, Typography} from "@mui/material";
+import React, {useEffect} from 'react';
+import {useNavigate, useParams} from "react-router-dom";
+
+import {useAppContext} from "../../hooks";
+import {SelectedCastMember} from "../SelectedCastMember";
 import css from "./SelectedCastMembers.module.css";
+import {personService} from "../../services";
+import {movieActions} from "../../reducers";
 
 const SelectedCastMembers = () => {
     const {movieId} = useParams();

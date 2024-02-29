@@ -16,7 +16,7 @@ const MovieCarousel:FC<IProps> = ({movie}) => {
     const {id, title, backdrop_path, vote_average} = movie;
     const navigate = useNavigate();
     return (
-        <div className={css.MovieCarousel} style={{backgroundImage: backdrop_path === null ? DummyBackground : `url(${posterURL}${urls.originalPosterSize}${backdrop_path})`}}>
+        <div className={css.MovieCarousel} style={{backgroundImage: backdrop_path ? `url(${posterURL}${urls.originalPosterSize}${backdrop_path})` : DummyBackground}}>
             <div className={css.info}>
                 <div>
                     <Typography sx={{color: "white"}} variant={"h5"}>

@@ -3,7 +3,7 @@ import {useSearchParams} from "react-router-dom";
 
 import {PaginationComponent, SearchingMovies} from "../components";
 import {useAppContext} from "../hooks";
-import {movieActions} from "../reducers/movie.reducer";
+import {movieActions} from "../reducers";
 import {movieService} from "../services";
 
 const SearchPage = () => {

@@ -3,7 +3,7 @@ import React from 'react';
 
 import {useAppContext} from "../../hooks";
 import {Switcher} from "./Switcher.style";
-import {movieActions} from "../../reducers/movie.reducer";
+import {movieActions} from "../../reducers";
 
 const ThemeSwitcher = () => {
     const theme = localStorage.getItem("themeMode");
