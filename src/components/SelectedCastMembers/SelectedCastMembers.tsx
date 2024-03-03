@@ -24,7 +24,7 @@ const SelectedCastMembers = () => {
     }, [movieId, dispatch]);
     return (
         <div>
-            <Typography sx={{color: isDarkTheme ? "white" : "black"}} variant={"h5"}>Top Billed Cast</Typography>
+            <Typography sx={{margin: "10px", color: isDarkTheme ? "white" : "black"}} variant={"h5"}>Top Billed Cast</Typography>
             <div className={css.castDiv}>
                 {cast.slice(0, 10).map(castMember => <SelectedCastMember key={castMember.id} castMember={castMember}/>)}
                 <Button sx={{color: isDarkTheme ? "white" : "#1976d2"}} onClick={() => navigate(`/movies/${movieId}/cast`)}>{<KeyboardArrowRight/>}</Button>

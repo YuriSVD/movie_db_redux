@@ -10,7 +10,7 @@ const HomePage = () => {
     const {state: {movies}, dispatch} = useAppContext();
     useEffect(() => {
         movieService.getAll("1").then(value => value.data).then(value => {
-            dispatch(movieActions.setAll(value.results))
+            dispatch(movieActions.setMovies(value.results))
         });
     }, [dispatch]);
 

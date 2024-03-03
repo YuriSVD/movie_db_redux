@@ -1,21 +1,20 @@
 import React, {useEffect} from 'react';
-import {useSearchParams} from "react-router-dom";
 
 import {Genres, Movies, PaginationComponent} from "../../components";
-import {useAppContext} from "../../hooks";
+import {useAppContext, usePageQuery} from "../../hooks";
 import css from "./MoviePage.module.css";
 import {movieService} from "../../services";
 import {movieActions} from "../../reducers";
 
 const MoviesPage = () => {
-    const [query, setQuery] = useSearchParams({page: "1"});
+    const {page} = usePageQuery();
     const {state: {movies, genreIds}, dispatch} = useAppContext();
     useEffect(() => {
-        movieService.getAll(query.get("page"), genreIds).then(value => value.data).then(value => {
-            dispatch(movieActions.setAll(value.results));
+        movieService.getAll(page, genreIds).then(value => value.data).then(value => {
+            dispatch(movieActions.setMovies(value.results));
             dispatch(movieActions.setTotalPage(value.total_pages));
         });
-    }, [query, dispatch, genreIds]);
+    }, [page, dispatch, genreIds]);
 
     return (
         <div className={css.MoviePage}>
@@ -24,7 +23,7 @@ const MoviesPage = () => {
             </div>
             <div>
                 <Movies movies={movies}/>
-                <PaginationComponent query={query} setQuery={setQuery}/>
+                <PaginationComponent/>
             </div>
         </div>
     );

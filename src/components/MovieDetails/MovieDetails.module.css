@@ -14,10 +14,11 @@
 
 .movieDiv img {
     border-radius: 1.04vw;
+    height: 23.44vw;
 }
 
 .mainInfo {
-    width: 56.67vw;
+    width: 41.84vw;
     padding: 0 1.56vw;
     box-sizing: border-box;
 }
@@ -45,8 +46,8 @@
 
 .trailer {
     position: absolute;
-    top: 0;
-    left: 21.3vw;
+    top: 4.15vw;
+    left: 28.7vw;
     z-index: 2;
 }
 

@@ -26,7 +26,7 @@ const SearchingMovie:FC<IProps> = ({movie}) => {
                 <CardMedia
                     sx={{height: "7.81vw", width: "5.21vw"}}
                     component={"img"}
-                    image={poster_path === null ? DummyPoster : posterURL + urls.w300PosterSize + poster_path}
+                    image={poster_path ? posterURL + urls.w300PosterSize + poster_path : DummyPoster}
                     alt={title}
                 />
                 <CardContent sx={{paddingTop: 0}}>

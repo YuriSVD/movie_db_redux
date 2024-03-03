@@ -4,12 +4,12 @@ import React from 'react';
 import {useAppContext} from "../../hooks";
 import {Switcher} from "./Switcher.style";
 import {movieActions} from "../../reducers";
+import {useSwitcherQuery} from "../../hooks";
 
 const ThemeSwitcher = () => {
     const theme = localStorage.getItem("themeMode");
-    //const {dispatch} = useAppContext();
     const {dispatch} = useAppContext();
-
+    const {changeTheme} = useSwitcherQuery();
     if (theme) {
         if (!document.body.className) {
             document.body.classList.add(theme);
@@ -20,11 +20,7 @@ const ThemeSwitcher = () => {
         <FormControlLabel
             control={<Switcher defaultChecked/>}
             label={""}
-            onChange={() => {
-                document.body.classList.toggle("darkTheme");
-                localStorage.setItem("themeMode", document.body.className);
-                dispatch(movieActions.changeTheme());
-            }}
+            onChange={changeTheme}
         />
     );
 };

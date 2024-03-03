@@ -13,20 +13,19 @@ interface IProps {
     movie: IMovie
 }
 
-const Movie:FC<IProps> = ({movie}) => {
+const Movie: FC<IProps> = ({movie}) => {
     const {id, title, vote_average, overview, poster_path, release_date} = movie;
+
     return (
         <div className={css.Movie}>
             <div className={css.posterDiv}>
                 <img src={poster_path ? posterURL + urls.w300PosterSize + poster_path : DummyPoster} alt={title}/>
             </div>
             <Link to={`/movies/${id}`} className={css.details}>
-                <div className={css.xxx}>
-                    <Typography gutterBottom variant={"h5"}>{title}</Typography>
-                    <RatingStar rating={vote_average}/>
-                    <ReleaseDate release_date={release_date}/>
-                    <Typography sx={{marginTop: "8.4px"}} align={"justify"} variant={"body1"}>{overview}</Typography>
-                </div>
+                <Typography gutterBottom variant={"h5"}>{title}</Typography>
+                <RatingStar rating={vote_average}/>
+                <ReleaseDate release_date={release_date}/>
+                <Typography sx={{marginTop: "8.4px"}} align={"justify"} variant={"body1"}>{overview}</Typography>
             </Link>
         </div>
     );

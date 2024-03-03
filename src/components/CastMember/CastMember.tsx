@@ -11,7 +11,6 @@ interface IProps {
 
 const CastMember:FC<IProps> = ({castMember}) => {
     const {name, character, profile_path} = castMember;
-
     return (
         <Card sx={{marginBottom: "0.5vw"}}>
             <CardActionArea disabled sx={{

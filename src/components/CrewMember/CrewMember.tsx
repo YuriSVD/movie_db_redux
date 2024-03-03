@@ -11,7 +11,6 @@ interface IProps {
 
 const CrewMember:FC<IProps> = ({crewMember}) => {
     const {name, job, profile_path} = crewMember;
-
     return (
         <Card sx={{marginBottom: "0.5vw"}}>
             <CardActionArea disabled sx={{

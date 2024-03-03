@@ -1,0 +1,24 @@
+.SearchForm {
+    margin-top: 3vw;
+    flex-direction: column;
+    height: 6vw;
+    display: flex;
+}
+.form {
+    height: 3vw;
+    width: 80vw;
+    padding: 2px 4px;
+    display: flex;
+    align-items: center;
+}
+.alert {
+    height: 1.87vw;
+    display: flex;
+    align-items: center;
+}
+
+.alert div {
+    font-size: 0.82vw;
+    padding: 0.36vw 0;
+    margin-right: 0.62vw;
+}

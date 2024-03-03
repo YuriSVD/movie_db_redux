@@ -12,6 +12,7 @@ const RatingStar:FC<IProps> = ({rating}) => {
     return (
         <div className={css.RatingStar}>
             <Rating name={"rating star"}
+                    sx={{fontSize: "1vw"}}
                     value={rating}
                     precision={0.1}
                     max={10}

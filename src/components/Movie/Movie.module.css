@@ -26,7 +26,6 @@
     width: 17vw;
     top: 0;
     left: 0;
-    /*object-fit: cover;*/
     transition: 0.3s;
 }
 .details {
@@ -44,14 +43,17 @@
     color: #fff;
     z-index: 2;
     border-radius: 1.04vw;
+    overflow: hidden;
+}
+.details p {
+    font-size: 1vw;
+}
+.details h5 {
+    font-size: 1.4vw;
 }
 .Movie:hover .posterDiv::before {
     top: 0;
 }
 .Movie:hover .details {
     top: 0;
-}
-.xxx {
-    max-height: 100%;
-    overflow: hidden;
 }

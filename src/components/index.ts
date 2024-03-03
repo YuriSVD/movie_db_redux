@@ -5,6 +5,8 @@ export * from "./CrewMember";
 export * from "./CrewMembers";
 export * from "./Genre";
 export * from "./Genres";
+export * from "./GenresMenu";
+export * from "./GenresMenuItem";
 export * from "./Header";
 export * from "./Movie";
 export * from "./MovieDetails";

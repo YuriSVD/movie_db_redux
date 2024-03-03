@@ -25,9 +25,7 @@ const MovieCarousel:FC<IProps> = ({movie}) => {
                     <RatingStar rating={vote_average}/>
                 </div>
                 <div>
-                    <Button sx={{color: "white", borderColor: "white"}} variant={"outlined"} onClick={() => {
-                        navigate(`/movies/${id}`);
-                    }}>
+                    <Button sx={{color: "white", borderColor: "white"}} variant={"outlined"} onClick={() => {navigate(`/movies/${id}`)}}>
                         View Info
                     </Button>
                 </div>

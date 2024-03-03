@@ -1,0 +1,17 @@
+.MovieGenre {
+    text-decoration: none;
+    color: white;
+    border-right: white solid 1px;
+    padding: 0.26vw;
+    transition: 0.3s;
+}
+.MovieGenre:hover {
+    color: #1976d2;
+    transition: 0.3s;
+}
+.MovieGenre:last-child {
+    border: none;
+}
+.MovieGenre:first-child {
+    padding-left: 0;
+}

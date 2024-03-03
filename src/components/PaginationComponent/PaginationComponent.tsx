@@ -1,40 +1,30 @@
 import {Pagination, Stack} from "@mui/material";
-import React, {FC} from 'react';
-import {SetURLSearchParams} from "react-router-dom";
+import React from 'react';
 
-import {useAppContext} from "../../hooks";
+import {useAppContext, usePageQuery} from "../../hooks";
 
-interface IProps {
-    query: URLSearchParams;
-    setQuery: SetURLSearchParams;
-}
-
-const PaginationComponent:FC<IProps> = ({query, setQuery}) => {
+const PaginationComponent = () => {
     const {state:{totalPage, isDarkTheme}} = useAppContext();
-    const handlePageChange = (event: React.ChangeEvent<unknown>, page: number)  => {
-        if (page > 500) {
-            page = 500;
-        }
-        setQuery({page: page.toString()});
-    };
+    const {page, changePage} = usePageQuery();
 
     return (
         <Stack>
             <Pagination
                 count={totalPage}
-                page={+query.get("page")}
+                page={+page}
                 sx={{
                     display: "flex",
                     justifyContent: "center",
                     button: {color: isDarkTheme ? "white" : "#1976d2"},
-                    div: {color: isDarkTheme ? "white" : "#1976d2"}
+                    div: {color: isDarkTheme ? "white" : "#1976d2"},
+                    marginBottom: "10px"
                 }}
                 size={"large"}
                 shape={"rounded"}
                 color={"primary"}
                 showFirstButton
                 showLastButton
-                onChange={handlePageChange}
+                onChange={changePage}
             />
         </Stack>
     );

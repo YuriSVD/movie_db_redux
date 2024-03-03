@@ -12,10 +12,9 @@ interface IProps {
 const SelectedCastMember:FC<IProps> = ({castMember}) => {
     const {name, profile_path, character} = castMember;
     return (
-        <Card sx={{maxWidth: "10.4vw", marginRight: "0.5vw"}}>
+        <Card sx={{width: "10vw", marginRight: "0.5vw"}}>
             <CardActionArea disabled>
-                <CardMedia sx={{height: "13.3vw"}}
-                           component={"img"}
+                <CardMedia component={"img"}
                            image={profile_path ? posterURL + urls.w300PosterSize + profile_path : DummyPhoto}
                 />
                 <CardContent>

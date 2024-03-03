@@ -1,0 +1,9 @@
+.form {
+    display: flex;
+}
+.alert {
+    margin-left: 10px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+}
