@@ -16,6 +16,7 @@ import {SearchIconWrapper} from "./SearchIconWrapper.styled";
 import {StyledInputBaseStyled} from "./StyledInputBase.styled";
 import {ThemeSwitcher} from "../ThemeSwitcher";
 import {MovieTitleValidator} from "../../validators";
+import {UserForm} from "../UserForm";
 
 interface IMovieTitle {
     movieTitle: string
@@ -62,9 +63,10 @@ const Header:FC = () => {
                     </Box>
                     <Box sx={{display: "flex", alignItems: "center"}}>
                         <ThemeSwitcher/>
-                        <Button color={"inherit"}>
+                        {/*<Button color={"inherit"}>
                             <AccountCircle fontSize={"large"}/>
-                        </Button>
+                        </Button>*/}
+                        <UserForm/>
                     </Box>
                 </Toolbar>
             </AppBar>

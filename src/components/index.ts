@@ -23,3 +23,4 @@ export * from "./SearchingMovies";
 export * from "./SelectedCastMember";
 export * from "./SelectedCastMembers";
 export * from "./ThemeSwitcher";
+export * from "./UserForm";

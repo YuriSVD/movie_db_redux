@@ -12,7 +12,7 @@ interface IProps {
 
 const Carousel:FC<IProps> = ({movies}) => {
     const {offset, prevButton, nextButton} = useCarouselQuery();
-    setTimeout(() => nextButton(), 10000);
+    //setTimeout(() => nextButton(), 10000);
     return (
         <div className={css.CarouselDiv}>
             <div className={css.Carousel} style={{transform: `translateX(${offset}vw)`}}>
