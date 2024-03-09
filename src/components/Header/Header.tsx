@@ -1,6 +1,5 @@
 import {joiResolver} from "@hookform/resolvers/joi";
 import {Alert, AppBar, Box, Button, Toolbar, Typography} from "@mui/material";
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import MovieIcon from '@mui/icons-material/Movie';
 import SearchIcon from '@mui/icons-material/Search';
 import React, {FC} from 'react';
@@ -9,14 +8,14 @@ import {useNavigate} from "react-router-dom";
 
 import {GenresMenu} from "../GenresMenu";
 import css from "./Header.module.css";
-import {useAppContext} from "../../hooks";
-import {movieActions} from "../../reducers";
+import {useAppDispatch} from "../../hooks";
 import {Search} from "./Search.styled";
 import {SearchIconWrapper} from "./SearchIconWrapper.styled";
 import {StyledInputBaseStyled} from "./StyledInputBase.styled";
 import {ThemeSwitcher} from "../ThemeSwitcher";
 import {MovieTitleValidator} from "../../validators";
 import {UserForm} from "../UserForm";
+import {movieActions} from "../../redux";
 
 interface IMovieTitle {
     movieTitle: string
@@ -27,10 +26,10 @@ const Header:FC = () => {
         mode: "onSubmit",
         resolver: joiResolver(MovieTitleValidator)
     });
-    const {dispatch} = useAppContext();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const search: SubmitHandler<IMovieTitle> = (title) => {
-        dispatch(movieActions.searchMovies(title.movieTitle));
+        dispatch(movieActions.setSearchingTitle(title.movieTitle));
         navigate("/search");
         reset();
     }

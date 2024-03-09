@@ -2,14 +2,14 @@ import {ICastMember, ICrewMember, IGenre, IMovie, IVideo} from "../interfaces";
 
 interface IState {
     isDarkTheme: boolean;
-    totalPage: number;
-    movies: IMovie[];
-    genres: IGenre[];
-    searchTitle: string;
-    selectedGenres: IGenre[];
+    totalPage: number; //done
+    movies: IMovie[]; // done
+    genres: IGenre[]; //done
+    searchTitle: string; // done
+    selectedGenres: IGenre[]; // done
     genreIds: string;
-    cast: ICastMember[];
-    crew: ICrewMember[];
+    cast: ICastMember[]; //done
+    crew: ICrewMember[]; //done
     videos: IVideo[];
 }
 
@@ -33,7 +33,7 @@ enum movieActionType {
     GET_VIDEOS_TO_MOVIE = "GET_VIDEOS_TO_MOVIE",
 }
 
-const movieActions = {
+const movieActions1 = {
     setTotalPage: (totalPage: number) => ({type: movieActionType.SET_TOTAL_PAGE, payload: totalPage}),
     changeTheme: () => ({type: movieActionType.CHANGE_THEME}),
     setMovies: (movies: IMovie[]) => ({type: movieActionType.SET_MOVIES, payload: movies}),
@@ -92,7 +92,7 @@ const movieReducer = (state:IState, action: IActions) => {
 }
 
 export {
-    movieActions,
+    movieActions1,
     movieInitialState,
     movieReducer
 };

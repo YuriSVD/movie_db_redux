@@ -1,20 +1,19 @@
 import React, {useEffect} from 'react';
 
 import {Genres, Movies, PaginationComponent} from "../../components";
-import {useAppContext, usePageQuery} from "../../hooks";
+import {useAppDispatch, useAppSelector, usePageQuery} from "../../hooks";
 import css from "./MoviePage.module.css";
-import {movieService} from "../../services";
-import {movieActions} from "../../reducers";
+import {movieActions} from "../../redux";
 
 const MoviesPage = () => {
     const {page} = usePageQuery();
-    const {state: {movies, genreIds}, dispatch} = useAppContext();
+    const {movies} = useAppSelector(state => state.movieReducer);
+    const {genreIds} = useAppSelector(state => state.genreReducer);
+    const dispatch = useAppDispatch();
+
     useEffect(() => {
-        movieService.getAll(page, genreIds).then(value => value.data).then(value => {
-            dispatch(movieActions.setMovies(value.results));
-            dispatch(movieActions.setTotalPage(value.total_pages));
-        });
-    }, [page, dispatch, genreIds]);
+        dispatch(movieActions.getAll({page, genreIds}))
+    }, [page, genreIds, dispatch]);
 
     return (
         <div className={css.MoviePage}>

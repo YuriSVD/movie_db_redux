@@ -1,9 +1,10 @@
-import {useAppContext} from "./useAppContext";
+import {useAppSelector} from "./redux.hook";
 
 const useCrewQuery = () => {
-    const {state: {crew}} = useAppContext();
+    const {crewMembers} = useAppSelector(state => state.personReducer);
+    //const {state: {crew}} = useAppContext();
 
-    return crew.reduce((accumulator, crewMember) => {
+    return crewMembers.reduce((accumulator, crewMember) => {
         switch (crewMember.department) {
             case "Art":
                 accumulator.art.push(crewMember);

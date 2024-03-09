@@ -2,11 +2,12 @@ import {Typography} from "@mui/material";
 import React from 'react';
 
 import {CrewMember} from "../CrewMember";
-import {useAppContext} from "../../hooks";
+import {useAppSelector} from "../../hooks";
 import {useCrewQuery} from "../../hooks";
 
 const CrewMembers = () => {
-    const {state: {isDarkTheme}} = useAppContext();
+    //const {state: {isDarkTheme}} = useAppContext();
+    const {isDarkTheme} = useAppSelector(state => state.switchReducer);
     const reduce = useCrewQuery();
     return (
         <div>

@@ -1,10 +1,12 @@
 import {useState} from "react";
-import {useAppContext} from "./useAppContext";
+
 import {IGenre} from "../interfaces";
-import {movieActions} from "../reducers";
+import {useAppDispatch, useAppSelector} from "./redux.hook";
+import {genreActions} from "../redux";
 
 const useGenreQuery = () => {
-    const {state: {selectedGenres}, dispatch} = useAppContext();
+    const {selectedGenres} = useAppSelector(state => state.genreReducer);
+    const dispatch = useAppDispatch();
     const [selected, setSelected] = useState<boolean>(false);
     const genresIds = selectedGenres.map(genre => genre.id).toString();
     return {
@@ -12,11 +14,10 @@ const useGenreQuery = () => {
         changeTrigger: () => setSelected(prevState => !prevState),
         setRemoveFromSelected: (genre: IGenre) =>
             selectedGenres.includes(genre)
-                ? dispatch(movieActions.removeGenreFromList(genre))
-                : dispatch(movieActions.addGenreToList(genre)),
+                ? dispatch(genreActions.removeGenreFromList(genre))
+                : dispatch(genreActions.addGenreToList(genre)),
         searchBySelectedGenres: () => {
-            dispatch(movieActions.getGenreIds(genresIds));
-            dispatch(movieActions.removeAllGenresFromList());
+            dispatch(genreActions.setGenreIds(genresIds));
         }
     }
 }

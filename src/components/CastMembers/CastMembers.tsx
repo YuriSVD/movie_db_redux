@@ -1,15 +1,16 @@
+import {Typography} from "@mui/material";
 import React from 'react';
 
 import {CastMember} from "../CastMember";
-import {useAppContext} from "../../hooks";
-import {Typography} from "@mui/material";
+import {useAppSelector} from "../../hooks";
 
 const CastMembers = () => {
-    const {state: {cast, isDarkTheme}} = useAppContext();
+    const {castMembers} = useAppSelector(state => state.personReducer);
+    const {isDarkTheme} = useAppSelector(state => state.switchReducer);
     return (
         <div>
             <Typography sx={{color: isDarkTheme ? "white" : "black"}} gutterBottom variant={"h5"}>Cast</Typography>
-            {cast.map(castMember => <CastMember key={castMember.id} castMember={castMember}/>)}
+            {castMembers.map(castMember => <CastMember key={castMember.id} castMember={castMember}/>)}
         </div>
     );
 };

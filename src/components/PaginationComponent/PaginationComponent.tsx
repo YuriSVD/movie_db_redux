@@ -1,10 +1,11 @@
 import {Pagination, Stack} from "@mui/material";
 import React from 'react';
 
-import {useAppContext, usePageQuery} from "../../hooks";
+import {useAppSelector, usePageQuery} from "../../hooks";
 
 const PaginationComponent = () => {
-    const {state:{totalPage, isDarkTheme}} = useAppContext();
+    const {totalPage} = useAppSelector(state => state.movieReducer);
+    const {isDarkTheme} = useAppSelector(state => state.switchReducer);
     const {page, changePage} = usePageQuery();
 
     return (

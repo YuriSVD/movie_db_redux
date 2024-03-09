@@ -3,21 +3,17 @@ import {useParams} from "react-router-dom";
 
 import css from "./CastAndCrew.module.css";
 import {CastMembers, CrewMembers} from "../../components";
-import {useAppContext} from "../../hooks";
-import {movieActions} from "../../reducers";
-import {personService} from "../../services";
+import {useAppDispatch} from "../../hooks";
+import {personActions} from "../../redux";
 
 const CastAndCrewPage = () => {
     const {movieId} = useParams();
-    const {dispatch} = useAppContext();
+    const dispatch = useAppDispatch();
+
     useEffect(() => {
-        personService.getAll(movieId)
-            .then(value => value.data)
-            .then(value => {
-                dispatch(movieActions.getCastMembers(value.cast));
-                dispatch(movieActions.getCrewMembers(value.crew));
-            })
-    }, [dispatch, movieId]);
+        dispatch(personActions.getAll({movieId}));
+    }, [movieId, dispatch]);
+
     return (
         <div className={css.CastAndCrew}>
             <CastMembers/>

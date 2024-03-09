@@ -1,20 +1,16 @@
 import React, {useEffect} from 'react';
 
 import {PaginationComponent, SearchingMovies} from "../../components";
-import {useAppContext, usePageQuery} from "../../hooks";
-import {movieActions} from "../../reducers";
-import {movieService} from "../../services";
+import {useAppDispatch, useAppSelector, usePageQuery} from "../../hooks";
+import {movieActions} from "../../redux";
 
 const SearchPage = () => {
     const {page} = usePageQuery();
-    const {state: {searchTitle, movies}, dispatch} = useAppContext();
+    const {movies, searchTitle} = useAppSelector(state => state.movieReducer);
+    const dispatch = useAppDispatch();
+
     useEffect(() => {
-        movieService.searchMovies(page, searchTitle)
-            .then(value => value.data)
-            .then(value => {
-                dispatch(movieActions.setMovies(value.results));
-                dispatch(movieActions.setTotalPage(value.total_pages));
-            });
+        dispatch(movieActions.searchMoviesByName({page, query: searchTitle}))
     }, [page, searchTitle, dispatch]);
 
     return (

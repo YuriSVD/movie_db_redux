@@ -2,17 +2,17 @@ import {Button, Menu} from "@mui/material";
 import React, {useEffect} from 'react';
 
 import {GenresMenuItem} from "../GenresMenuItem";
-import {useAppContext, useGenresMenuQuery} from "../../hooks";
-import {genreService} from "../../services";
-import {movieActions} from "../../reducers";
+import {useAppDispatch, useAppSelector, useGenresMenuQuery} from "../../hooks";
+import {genreActions} from "../../redux";
 
 const GenresMenu = () => {
-    const {state:{genres}, dispatch} = useAppContext();
+    const {genres} = useAppSelector(state => state.genreReducer);
+    const dispatch = useAppDispatch();
+
     useEffect(() => {
-        genreService.getAll()
-            .then(value => value.data)
-            .then(value => dispatch(movieActions.setGenres(value.genres)));
+        dispatch(genreActions.getAll())
     }, [dispatch]);
+
     const {anchorEl, viewMenu, closeMenu} = useGenresMenuQuery();
 
     return (

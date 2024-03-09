@@ -1,8 +1,8 @@
 import {useState} from "react";
-import {useAppContext} from "./useAppContext";
+import {useAppSelector} from "./redux.hook";
 
 const useCarouselQuery = () => {
-    const {state: {movies}} = useAppContext();
+    const {movies} = useAppSelector(state => state.movieReducer);
     const [offset, setOffset] = useState<number>(0);
 
     return {

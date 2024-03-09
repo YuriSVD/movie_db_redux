@@ -1,7 +1,7 @@
 import {Chip} from "@mui/material";
 import React, {FC} from 'react';
 
-import {useAppContext} from "../../hooks";
+import {useAppSelector} from "../../hooks";
 import {useGenreQuery} from "../../hooks";
 import {IGenre} from "../../interfaces";
 
@@ -10,7 +10,8 @@ interface IProps {
 }
 
 const Genre: FC<IProps> = ({genre}) => {
-    const {state: {isDarkTheme, selectedGenres}} = useAppContext();
+    const {selectedGenres} = useAppSelector(state => state.genreReducer);
+    const {isDarkTheme} = useAppSelector(state => state.switchReducer);
     const {selected, setRemoveFromSelected, changeTrigger} = useGenreQuery();
     const {name} = genre;
     if (!selectedGenres.length && selected) {

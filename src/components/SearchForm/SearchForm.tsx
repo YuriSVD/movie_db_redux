@@ -5,10 +5,10 @@ import React from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 
-import {useAppContext} from "../../hooks";
-import {movieActions} from "../../reducers";
+import {useAppDispatch, useAppSelector} from "../../hooks";
 import css from "./SearchForm.module.css";
 import {MovieTitleValidator} from "../../validators";
+import {movieActions} from "../../redux";
 
 interface IMovieTitle {
     movieTitle: string
@@ -19,10 +19,11 @@ const SearchForm = () => {
         mode: "onSubmit",
         resolver: joiResolver(MovieTitleValidator)
     });
-    const {state: {isDarkTheme}, dispatch} = useAppContext();
+    const {isDarkTheme} = useAppSelector(state => state.switchReducer);
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const search: SubmitHandler<IMovieTitle> = (title) => {
-        dispatch(movieActions.searchMovies(title.movieTitle));
+        dispatch(movieActions.setSearchingTitle(title.movieTitle));
         navigate("/search");
         reset();
     }

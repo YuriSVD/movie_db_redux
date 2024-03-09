@@ -5,14 +5,13 @@ import ReactPlayer from "react-player";
 import {posterURL, urls, youtubeURL} from "../../configs";
 import DummyBackground from "../../dummy_photos/dummy_background.jpg";
 import DummyPoster from "../../dummy_photos/dummy_poster.jpg";
+import {useAppDispatch, useAppSelector, useMovieVideoQuery} from "../../hooks";
 import {IMovieDetails} from "../../interfaces";
 import css from "./MovieDetails.module.css";
 import {MovieGenres} from "../MovieGenres";
 import {RatingStar} from "../RatingStar";
-import {movieActions} from "../../reducers";
 import {ReleaseDate} from "../ReleaseDate";
-import {useAppContext, useMovieVideoQuery} from "../../hooks";
-import {videoService} from "../../services/video.service";
+import {videoActions} from "../../redux";
 
 interface IProps {
     movieDetails: IMovieDetails
@@ -32,14 +31,16 @@ const MovieDetails: FC<IProps> = ({movieDetails}) => {
         runtime,
         revenue
     } = movieDetails;
-    const {state: {crew, videos}, dispatch} = useAppContext();
+    const {crewMembers} = useAppSelector(state => state.personReducer);
+    const {videos} = useAppSelector(state => state.videoReducer);
+    const dispatch = useAppDispatch();
     const {playTrailer, playStopTrailer} = useMovieVideoQuery();
+
     useEffect(() => {
-        videoService.getAll(id)
-            .then(value => value.data)
-            .then(value => dispatch(movieActions.getVideosToMovie(value.results)))
-    }, [id, dispatch]);
-    const directors = crew.filter(crewMember =>
+        dispatch(videoActions.getAll({id}))
+    }, [dispatch, id]);
+
+    const directors = crewMembers.filter(crewMember =>
         crewMember.job === "Director").map(director => director.name);
     const trailer = videos.find(video => video.type === "Trailer");
     return (

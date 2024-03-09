@@ -1,18 +1,18 @@
 import React, {useEffect} from 'react';
 
 import {Carousel, Movies, SearchForm} from "../../components";
-import {useAppContext} from "../../hooks";
+import {useAppDispatch, useAppSelector, usePageQuery} from "../../hooks";
 import css from "./HomePage.module.css";
-import {movieActions} from "../../reducers";
-import {movieService} from "../../services";
+import {movieActions} from "../../redux";
 
 const HomePage = () => {
-    const {state: {movies}, dispatch} = useAppContext();
+    const {movies} = useAppSelector(state => state.movieReducer);
+    const dispatch = useAppDispatch();
+    const {page} = usePageQuery();
+
     useEffect(() => {
-        movieService.getAll("1").then(value => value.data).then(value => {
-            dispatch(movieActions.setMovies(value.results))
-        });
-    }, [dispatch]);
+        dispatch(movieActions.getAll({page}))
+    }, [dispatch, page]);
 
     return (
         <div>
