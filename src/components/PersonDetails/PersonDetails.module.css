@@ -1,0 +1,15 @@
+.PersonDetails {
+    width: 80vw;
+    display: flex;
+    margin: 30px;
+    justify-content: space-between;
+}
+.overview {
+    margin: 0 50px;
+    width: 40vw;
+}
+.PersonDetails img {
+    border-radius: 10px;
+    width: 300px;
+    height: 450px;
+}

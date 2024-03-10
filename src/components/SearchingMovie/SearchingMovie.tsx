@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {posterURL, urls} from "../../configs";
 import DummyPoster from "../../dummy_photos/dummy_poster.jpg";
 import {IMovie} from "../../interfaces";
-import {ReleaseDate} from "../ReleaseDate";
+import {DateComponent} from "../DateComponent";
 
 interface IProps {
     movie: IMovie;
@@ -31,7 +31,7 @@ const SearchingMovie:FC<IProps> = ({movie}) => {
                 />
                 <CardContent sx={{paddingTop: 0}}>
                     <Typography variant={"h5"} component={"div"}>{title}</Typography>
-                    <ReleaseDate release_date={release_date}/>
+                    <DateComponent release_date={release_date}/>
                     <Typography variant={"subtitle1"}>{overview}</Typography>
                 </CardContent>
             </CardActionArea>

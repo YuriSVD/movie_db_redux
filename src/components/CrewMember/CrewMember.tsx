@@ -4,16 +4,19 @@ import React, {FC} from 'react';
 import {posterURL, urls} from "../../configs";
 import DummyPhoto from "../../dummy_photos/dummy_person.jpg";
 import {ICrewMember} from "../../interfaces";
+import {useNavigate} from "react-router-dom";
 
 interface IProps {
     crewMember: ICrewMember;
 }
 
 const CrewMember:FC<IProps> = ({crewMember}) => {
-    const {name, job, profile_path} = crewMember;
+    const {id, name, job, profile_path} = crewMember;
+    const navigate = useNavigate();
+    const details = () => navigate(`/person/${id}`);
     return (
         <Card sx={{marginBottom: "0.5vw"}}>
-            <CardActionArea disabled sx={{
+            <CardActionArea onClick={details} sx={{
                 display: "flex",
                 justifyContent: "flex-start",
                 alignItems: "flex-start",

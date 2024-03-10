@@ -4,16 +4,19 @@ import {ICastMember} from "../../interfaces";
 import DummyPhoto from "../../dummy_photos/dummy_person.jpg";
 import {Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material";
 import {posterURL, urls} from "../../configs";
+import {useNavigate} from "react-router-dom";
 
 interface IProps {
     castMember: ICastMember;
 }
 
 const CastMember:FC<IProps> = ({castMember}) => {
-    const {name, character, profile_path} = castMember;
+    const {id, name, character, profile_path} = castMember;
+    const navigate = useNavigate();
+    const details = () => navigate(`/person/${id}`);
     return (
-        <Card sx={{marginBottom: "0.5vw"}}>
-            <CardActionArea disabled sx={{
+        <Card onClick={details} sx={{marginBottom: "0.5vw"}}>
+            <CardActionArea sx={{
                 display: "flex",
                 justifyContent: "flex-start",
                 alignItems: "flex-start",

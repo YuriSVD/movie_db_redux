@@ -9,7 +9,6 @@ interface IState {
     totalPage: number;
     genres: IGenre[];
     searchTitle: string;
-    //genreIds: string;
     cast: ICastMember[];
     crew: ICrewMember[];
     videos: IVideo[];
@@ -20,10 +19,9 @@ const initialState: IState = {
     totalPage: 1,
     genres: [],
     searchTitle: null,
-    //genreIds: "",
     cast: [],
     crew: [],
-    videos: []
+    videos: [],
 }
 
 const getAll = createAsyncThunk<IPage, {page: string, genreIds?: string}>(
@@ -58,7 +56,7 @@ const slice = createSlice({
     reducers: {
         setSearchingTitle: (state, actions) => {
             state.searchTitle = actions.payload;
-        }
+        },
     },
     extraReducers: builder => {
         builder

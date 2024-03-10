@@ -4,16 +4,19 @@ import React, {FC} from 'react';
 import {posterURL, urls} from "../../configs";
 import DummyPhoto from "../../dummy_photos/dummy_person.jpg";
 import {ICastMember} from "../../interfaces";
+import {useNavigate} from "react-router-dom";
 
 interface IProps {
     castMember: ICastMember
 }
 
 const SelectedCastMember:FC<IProps> = ({castMember}) => {
-    const {name, profile_path, character} = castMember;
+    const {id, name, profile_path, character} = castMember;
+    const navigate = useNavigate();
+    const details = () => navigate(`/person/${id}`);
     return (
-        <Card sx={{width: "10vw", marginRight: "0.5vw"}}>
-            <CardActionArea disabled>
+        <Card onClick={details} sx={{width: "10vw", marginRight: "0.5vw"}}>
+            <CardActionArea>
                 <CardMedia component={"img"}
                            image={profile_path ? posterURL + urls.w300PosterSize + profile_path : DummyPhoto}
                 />

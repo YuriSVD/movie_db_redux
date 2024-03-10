@@ -10,7 +10,7 @@ import {IMovieDetails} from "../../interfaces";
 import css from "./MovieDetails.module.css";
 import {MovieGenres} from "../MovieGenres";
 import {RatingStar} from "../RatingStar";
-import {ReleaseDate} from "../ReleaseDate";
+import {DateComponent} from "../DateComponent";
 import {videoActions} from "../../redux";
 
 interface IProps {
@@ -69,7 +69,7 @@ const MovieDetails: FC<IProps> = ({movieDetails}) => {
                 <div className={`${css.secondaryInfo} ${css.zIndex1}`}>
                     <Typography className={css.bold} variant={"body1"}>{directors.join(", ")}</Typography>
                     {!!directors.length && <Typography gutterBottom variant={"body2"}>Director</Typography>}
-                    {!!release_date && <ReleaseDate release_date={release_date}/>}
+                    {!!release_date && <DateComponent release_date={release_date}/>}
                     {!!release_date && <Typography gutterBottom variant={"body2"}>Release Date</Typography>}
                     {!!runtime && <Typography className={css.bold} variant={"body1"}>
                         {`${Math.floor(runtime / 60)}h ${runtime % 60}m`}

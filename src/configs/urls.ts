@@ -8,6 +8,14 @@ const posterURL = "https://image.tmdb.org/t/p";
 
 const youtubeURL = "https://www.youtube.com";
 
+const imdbURL = "https://www.imdb.com";
+
+const facebookURL = "https://www.facebook.com";
+
+const twitterURL = "https://twitter.com";
+
+const instagramURL = "https://www.instagram.com";
+
 const urls = {
     discover: "/discover",
     movie: "/movie",
@@ -19,6 +27,19 @@ const urls = {
     search: "/search",
     videos: "/videos",
     watch: "/watch?v=",
+    person: "/person",
+    combined_credits: "/combined_credits",
+    external_ids: "/external_ids",
+    name: "/name"
 };
 
-export {movieURL, posterURL, youtubeURL, urls, accessToken}
+export {
+    movieURL,
+    posterURL,
+    youtubeURL,
+    imdbURL,
+    facebookURL,
+    instagramURL,
+    twitterURL,
+    urls,
+    accessToken}

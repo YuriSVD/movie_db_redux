@@ -1,0 +1,14 @@
+.CrewMovie {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.date {
+    width: 100px;
+}
+.title {
+    margin-left: 30px;
+}
+.title a {
+    text-decoration: none;
+}

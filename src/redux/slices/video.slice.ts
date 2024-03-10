@@ -4,11 +4,15 @@ import {videoService} from "../../services/video.service";
 import {AxiosError} from "axios";
 
 interface IState {
-    videos: IVideo[]
+    videos: IVideo[];
+    numberOfVideo: number;
+    activeVideo: boolean;
 }
 
 const initialState: IState = {
-   videos: []
+    videos: [],
+    numberOfVideo: 0,
+    activeVideo: false
 }
 
 const getAll = createAsyncThunk<IVideoPage, {id: number}>(
@@ -27,7 +31,14 @@ const getAll = createAsyncThunk<IVideoPage, {id: number}>(
 const slice = createSlice({
     name: "videoSlice",
     initialState,
-    reducers: {},
+    reducers: {
+        setNumberOfVideo: (state, actions) => {
+            state.numberOfVideo = actions.payload;
+        },
+        setActiveVideo: (state, actions) => {
+            state.activeVideo = actions.payload;
+        }
+    },
     extraReducers: builder => {
         builder
             .addCase(getAll.fulfilled, (state, action) => {
