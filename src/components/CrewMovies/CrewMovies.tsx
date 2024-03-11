@@ -12,9 +12,10 @@ const CrewMovies = () => {
             .filter(movie => movie.media_type === "movie" && movie.release_date !== "")
             .sort((a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime());
 
-   /* let m = [...movies];
-    const sort = (array: ICrewMovie[]) => {
-        let sortArray = [] as ICrewMovie[];
+    const obj = Object.create({movies});
+    console.log(obj);
+    /*const sort = (array: any) => {
+        let sortArray = [];
         for (let i = 0; i < array.length; i++) {
             if (i !== 0 && sortArray[sortArray.length - 1].title === array[i].title) {
                 sortArray[sortArray.length - 1].job = sortArray[sortArray.length - 1].job + array[i].job;
