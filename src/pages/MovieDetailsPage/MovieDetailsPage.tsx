@@ -1,7 +1,7 @@
 import React from 'react';
 import {useLoaderData} from "react-router-dom";
 
-import {MovieDetails, SelectedCastMembers, SelectedVideos} from "../../components";
+import {MovieDetails, SelectedCastMembers} from "../../components";
 import {IMovieDetails} from "../../interfaces";
 
 type LoaderData = {
@@ -14,7 +14,7 @@ const MovieDetailsPage = () => {
         <div>
             <MovieDetails movieDetails={data}/>
             <SelectedCastMembers/>
-            <SelectedVideos/>
+            {/*<SelectedVideos/>*/}
         </div>
     );
 };

@@ -28,9 +28,14 @@ const urls = {
     videos: "/videos",
     watch: "/watch?v=",
     person: "/person",
-    combined_credits: "/combined_credits",
+    movie_credits: "/movie_credits",
     external_ids: "/external_ids",
-    name: "/name"
+    name: "/name",
+    account: "/account",
+    watchlist: "/watchlist",
+    favorite: "./favorite",
+    movies: "/movies",
+    account_states: "/account_states"
 };
 
 export {

@@ -21,12 +21,14 @@ const Movie: FC<IProps> = ({movie}) => {
             <div className={css.posterDiv}>
                 <img src={poster_path ? posterURL + urls.w300PosterSize + poster_path : DummyPoster} alt={title}/>
             </div>
-            <Link to={`/movies/${id}`} className={css.details}>
-                <Typography gutterBottom variant={"h5"}>{title}</Typography>
-                <RatingStar rating={vote_average}/>
-                <DateComponent release_date={release_date}/>
-                <Typography sx={{marginTop: "8.4px"}} align={"justify"} variant={"body1"}>{overview}</Typography>
-            </Link>
+            <div>
+                <Link to={`/movies/${id}`} className={css.details}>
+                    <Typography gutterBottom variant={"h5"}>{title}</Typography>
+                    <RatingStar rating={vote_average}/>
+                    <DateComponent release_date={release_date}/>
+                    <Typography sx={{marginTop: "8.4px"}} align={"justify"} variant={"body1"}>{overview}</Typography>
+                </Link>
+            </div>
         </div>
     );
 };

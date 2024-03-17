@@ -1,16 +1,7 @@
 import {createBrowserRouter, Navigate} from "react-router-dom";
 
 import {MainLayout} from "./layouts";
-import {
-    CastAndCrewPage,
-    GenrePage,
-    HomePage,
-    MovieDetailsPage,
-    MoviesPage,
-    PersonPage,
-    SearchPage,
-    VideoPage
-} from "./pages";
+import {CastAndCrewPage, GenrePage, HomePage, MovieDetailsPage, MoviesPage, PersonPage, SearchPage, UserFavoriteListPage, UserWatchListPage, VideoPage} from "./pages";
 import {movieService, personService} from "./services";
 
 const router = createBrowserRouter([
@@ -44,6 +35,12 @@ const router = createBrowserRouter([
             {
                 path: "person/:personId", element: <PersonPage/>,
                 loader: ({params: {personId}}) => personService.getPersonDetails(personId),
+            },
+            {
+                path: ":userId/watch", element: <UserWatchListPage/>
+            },
+            {
+                path: ":userId/favorite", element: <UserFavoriteListPage/>
             }
         ]
     }

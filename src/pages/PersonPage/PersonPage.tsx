@@ -15,7 +15,7 @@ const PersonPage = () => {
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(personActions.getPersonMovies({personId: data.id}))
-    }, [data.id, dispatch]);
+    }, [data, dispatch]);
     return (
         <div className={css.PersonPage}>
             <PersonDetails personDetails={data}/>

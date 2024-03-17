@@ -3,11 +3,12 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import MovieFilterIcon from '@mui/icons-material/MovieFilter';
 import XIcon from '@mui/icons-material/X';
 import React, {FC, useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from "../../hooks";
-import {personActions} from "../../redux";
-import {facebookURL, imdbURL, instagramURL, twitterURL, urls} from "../../configs";
 import {Link} from "react-router-dom";
+
+import {facebookURL, imdbURL, instagramURL, twitterURL, urls} from "../../configs";
+import {useAppDispatch, useAppSelector} from "../../hooks";
 import css from "./PersonLinks.module.css";
+import {personActions} from "../../redux";
 
 interface IProps {
     personId: number;

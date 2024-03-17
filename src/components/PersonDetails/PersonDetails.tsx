@@ -1,12 +1,13 @@
-import React, {FC} from 'react';
-import {IPersonDetails} from "../../interfaces";
-import DummyPhoto from "../../dummy_photos/dummy_person.jpg";
-import {posterURL, urls} from "../../configs";
 import {Typography} from "@mui/material";
-import css from "./PersonDetails.module.css";
-import {useAppSelector} from "../../hooks";
-import {PersonLinks} from "../PersonLinks";
+import React, {FC} from 'react';
+
+import {posterURL, urls} from "../../configs";
 import {DateComponent} from "../DateComponent";
+import DummyPhoto from "../../dummy_photos/dummy_person.jpg";
+import {useAppSelector} from "../../hooks";
+import {IPersonDetails} from "../../interfaces";
+import css from "./PersonDetails.module.css";
+import {PersonLinks} from "../PersonLinks";
 
 interface IProps {
     personDetails: IPersonDetails;

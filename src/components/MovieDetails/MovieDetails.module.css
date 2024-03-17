@@ -54,3 +54,11 @@
 .bold {
     font-weight: bold;
 }
+.buttonsDiv {
+    display: flex;
+    align-items: center;
+}
+.buttonsDiv button {
+    padding: 0;
+    min-width: 30px;
+}

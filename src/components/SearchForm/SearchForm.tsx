@@ -6,9 +6,9 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 
 import {useAppDispatch, useAppSelector} from "../../hooks";
+import {movieActions} from "../../redux";
 import css from "./SearchForm.module.css";
 import {MovieTitleValidator} from "../../validators";
-import {movieActions} from "../../redux";
 
 interface IMovieTitle {
     movieTitle: string

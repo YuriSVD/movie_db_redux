@@ -1,11 +1,12 @@
 import React, {FC} from 'react';
-import {IVideo} from "../../interfaces";
-import {useAppSelector} from "../../hooks";
-import {useDispatch} from "react-redux";
-import {videoActions} from "../../redux";
-import css from "./SelectedVideo.module.css";
 import ReactPlayer from "react-player";
+import {useDispatch} from "react-redux";
+
 import {urls, youtubeURL} from "../../configs";
+import {useAppSelector} from "../../hooks";
+import {IVideo} from "../../interfaces";
+import css from "./SelectedVideo.module.css";
+import {videoActions} from "../../redux";
 
 interface IProps {
     video: IVideo,

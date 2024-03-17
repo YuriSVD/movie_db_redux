@@ -1,15 +1,8 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {
-    ICastMember,
-    ICredits,
-    ICrewMember,
-    IPersonMoviesPage,
-    IPersonLinks,
-    ICastMovie,
-    ICrewMovie
-} from "../../interfaces";
-import {personService} from "../../services";
 import {AxiosError} from "axios";
+
+import {ICastMember, ICredits, ICrewMember, IPersonMoviesPage, IPersonLinks, ICastMovie, ICrewMovie} from "../../interfaces";
+import {personService} from "../../services";
 
 interface IState {
     castMembers: ICastMember[],

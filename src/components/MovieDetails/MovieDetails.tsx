@@ -1,17 +1,21 @@
-import {Button, Typography} from "@mui/material";
+import {Button, Tooltip, Typography} from "@mui/material";
+import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import React, {FC, useEffect} from 'react';
 import ReactPlayer from "react-player";
 
 import {posterURL, urls, youtubeURL} from "../../configs";
+import {DateComponent} from "../DateComponent";
 import DummyBackground from "../../dummy_photos/dummy_background.jpg";
 import DummyPoster from "../../dummy_photos/dummy_poster.jpg";
-import {useAppDispatch, useAppSelector, useMovieVideoQuery} from "../../hooks";
+import {useAppDispatch, useAppSelector, useMovieStatesQuery, useMovieVideoQuery} from "../../hooks";
 import {IMovieDetails} from "../../interfaces";
 import css from "./MovieDetails.module.css";
 import {MovieGenres} from "../MovieGenres";
 import {RatingStar} from "../RatingStar";
-import {DateComponent} from "../DateComponent";
-import {videoActions} from "../../redux";
+import {movieActions, videoActions} from "../../redux";
 
 interface IProps {
     movieDetails: IMovieDetails
@@ -31,18 +35,21 @@ const MovieDetails: FC<IProps> = ({movieDetails}) => {
         runtime,
         revenue
     } = movieDetails;
+    const {movieStates} = useAppSelector(state => state.movieReducer);
+    const {user, trigger} = useAppSelector(state => state.userReducer);
     const {crewMembers} = useAppSelector(state => state.personReducer);
     const {videos} = useAppSelector(state => state.videoReducer);
     const dispatch = useAppDispatch();
     const {playTrailer, playStopTrailer} = useMovieVideoQuery();
-
     useEffect(() => {
-        dispatch(videoActions.getAll({id}))
-    }, [dispatch, id]);
-
+        dispatch(videoActions.getAll({id}));
+        dispatch(movieActions.getMovieStates({id}));
+        dispatch(movieActions.setMovieId(id));
+    }, [dispatch, id, user, trigger]);
     const directors = crewMembers.filter(crewMember =>
         crewMember.job === "Director").map(director => director.name);
     const trailer = videos.find(video => video.type === "Trailer");
+    const {setRemoveFromFavoriteList, setRemoveFromWatchList} = useMovieStatesQuery();
     return (
         <div>
             <div className={css.movieDiv}
@@ -54,16 +61,39 @@ const MovieDetails: FC<IProps> = ({movieDetails}) => {
                 </div>
                 <div className={`${css.mainInfo} ${css.zIndex1}`}>
                     {trailer && <ReactPlayer className={css.trailer}
-                                  style={{visibility: playTrailer ? "visible" : "hidden"}}
-                                  playing={playTrailer}
-                                  controls={true}
-                                  url={`${youtubeURL}${urls.watch}${trailer.key}`}
-                                  width={"41.84vw"}
-                                  height={"23.64vw"}
-                                  onEnded={playStopTrailer}/>}
-                    <Typography variant={"h3"}>{title}</Typography>
+                                             style={{visibility: playTrailer ? "visible" : "hidden"}}
+                                             playing={playTrailer}
+                                             controls={true}
+                                             url={`${youtubeURL}${urls.watch}${trailer.key}`}
+                                             width={"41.84vw"}
+                                             height={"23.64vw"}
+                                             onEnded={playStopTrailer}/>}
+                    <div style={{display: "flex"}}>
+                        <Typography variant={"h3"}>{title}</Typography>
+
+                    </div>
                     <RatingStar rating={vote_average}/>
-                    <MovieGenres genres={genres}/>
+                    <div className={css.buttonsDiv}>
+                        <MovieGenres genres={genres}/>
+                        {user && movieStates &&
+                            <div>
+                                <Tooltip title={movieStates.watchlist ? "delete from Watch" : "add to Watch"}>
+                                    <Button color={"inherit"} onClick={setRemoveFromWatchList}>
+                                        {movieStates.watchlist
+                                            ? <BookmarkOutlinedIcon/>
+                                            : <BookmarkBorderOutlinedIcon fontSize={"medium"}/>}
+                                    </Button>
+                                </Tooltip>
+                                <Tooltip title={movieStates.favorite ? "delete from Favorite" : "add to Favorite"}>
+                                    <Button color={"inherit"} onClick={setRemoveFromFavoriteList}>
+                                        {movieStates.favorite
+                                            ? <FavoriteOutlinedIcon/>
+                                            : <FavoriteBorderOutlinedIcon fontSize={"medium"}/>}
+                                    </Button>
+                                </Tooltip>
+                            </div>
+                        }
+                    </div>
                     <Typography align={"justify"} variant={"subtitle1"}>{overview}</Typography>
                 </div>
                 <div className={`${css.secondaryInfo} ${css.zIndex1}`}>

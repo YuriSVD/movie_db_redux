@@ -1,7 +1,8 @@
-import React, {FC} from 'react';
-import {IGenre} from "../../interfaces";
 import {MenuItem} from "@mui/material";
+import React, {FC} from 'react';
 import {useNavigate} from "react-router-dom";
+
+import {IGenre} from "../../interfaces";
 
 interface IProps {
     genre: IGenre

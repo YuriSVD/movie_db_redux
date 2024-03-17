@@ -1,9 +1,8 @@
 import {FormControlLabel} from "@mui/material";
 import React from 'react';
 
-import {useAppDispatch} from "../../hooks";
+import {useAppDispatch, useSwitcherQuery} from "../../hooks";
 import {Switcher} from "./Switcher.style";
-import {useSwitcherQuery} from "../../hooks";
 import {switchActions} from "../../redux";
 
 const ThemeSwitcher = () => {

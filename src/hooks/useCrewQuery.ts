@@ -1,10 +1,10 @@
 import {useAppSelector} from "./redux.hook";
+import {ICrewMember, ICrewMovie} from "../interfaces";
 
 const useCrewQuery = () => {
     const {crewMembers} = useAppSelector(state => state.personReducer);
-    //const {state: {crew}} = useAppContext();
 
-    return crewMembers.reduce((accumulator, crewMember) => {
+    const reduce = crewMembers.reduce((accumulator, crewMember) => {
         switch (crewMember.department) {
             case "Art":
                 accumulator.art.push(crewMember);
@@ -53,7 +53,34 @@ const useCrewQuery = () => {
         sound: [],
         visualEffects: [],
         writing: []
-    })
+    });
+
+
+    return {
+        reduce,
+        getCrew: (array: ICrewMember[]) => {
+            let sortArray = [] as ICrewMember[];
+            for (let i = 0; i < array.length; i++) {
+                if (i !== 0 && sortArray[sortArray.length - 1].name === array[i].name) {
+                    sortArray[sortArray.length - 1].job = sortArray[sortArray.length - 1].job + ", " + array[i].job;
+                } else {
+                    sortArray[sortArray.length] = {...array[i]}
+                }
+            }
+            return sortArray;
+        },
+        getMovies: (array: ICrewMovie[]) => {
+            const sortArray = [] as ICrewMovie[];
+            for (let i = 0; i < array.length; i++) {
+                if (i !== 0 && sortArray[sortArray.length - 1].title === array[i].title) {
+                    sortArray[sortArray.length - 1].job = sortArray[sortArray.length - 1].job + ", " + array[i].job;
+                } else {
+                    sortArray[sortArray.length] = {...array[i]}
+                }
+            }
+            return sortArray;
+        }
+    }
 }
 
 export {useCrewQuery}

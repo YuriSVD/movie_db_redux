@@ -1,11 +1,12 @@
-import React from 'react';
-import {useAppDispatch, useAppSelector} from "../../hooks";
-import {useNavigate, useParams} from "react-router-dom";
-import {videoActions} from "../../redux";
-import {Button, Typography} from "@mui/material";
-import css from "./SelectedVideos.module.css";
-import {SelectedVideo} from "../SelectedVideo";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import {Button, Typography} from "@mui/material";
+import React from 'react';
+import {useNavigate, useParams} from "react-router-dom";
+
+import {useAppDispatch, useAppSelector} from "../../hooks";
+import {SelectedVideo} from "../SelectedVideo";
+import css from "./SelectedVideos.module.css";
+import {videoActions} from "../../redux";
 
 const SelectedVideos = () => {
     const {movieId} = useParams();

@@ -3,8 +3,7 @@ import React, {FC, useEffect} from 'react';
 
 import {Genre} from "../Genre";
 import css from "./Genres.module.css"
-import {useAppDispatch, useAppSelector} from "../../hooks";
-import {useGenreQuery} from "../../hooks";
+import {useAppDispatch, useAppSelector, useGenreQuery} from "../../hooks";
 import {genreActions} from "../../redux";
 
 const Genres: FC = () => {

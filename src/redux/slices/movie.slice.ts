@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 
-import {ICastMember, ICrewMember, IGenre, IMovie, IPage, IVideo} from "../../interfaces";
+import {ICastMember, ICrewMember, IGenre, IMovie, IMovieStates, IPage, IVideo} from "../../interfaces";
 import {movieService} from "../../services";
 
 interface IState {
@@ -12,6 +12,8 @@ interface IState {
     cast: ICastMember[];
     crew: ICrewMember[];
     videos: IVideo[];
+    movieStates: IMovieStates;
+    movieId: number;
 }
 
 const initialState: IState = {
@@ -22,7 +24,9 @@ const initialState: IState = {
     cast: [],
     crew: [],
     videos: [],
-}
+    movieStates: null,
+    movieId: null,
+};
 
 const getAll = createAsyncThunk<IPage, {page: string, genreIds?: string}>(
     "movieSlice/getAll",
@@ -41,7 +45,46 @@ const searchMoviesByName = createAsyncThunk<IPage, {page: string, query: string}
     "movieSlice/searchMoviesByName",
     async ({page, query}, {rejectWithValue}) => {
         try {
-            let {data} = await movieService.searchMovies(page, query);
+            const {data} = await movieService.searchMovies(page, query);
+            return data;
+        } catch (e) {
+            const err = e as AxiosError;
+            return rejectWithValue(err.response.data);
+        }
+    }
+)
+
+const getWatchList = createAsyncThunk<IPage, {id: number, page?: string}>(
+    "movieSlice/getMovieList",
+    async ({id, page}, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.getWatchList(id, page);
+            return data;
+        } catch (e) {
+            const err = e as AxiosError;
+            return rejectWithValue(err.response.data);
+        }
+    }
+)
+
+const getFavoriteList = createAsyncThunk<IPage, {id: number, page?: string}>(
+    "movieSlice/getFavoriteList",
+    async ({id, page}, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.getFavoriteList(id, page);
+            return data;
+        } catch (e) {
+            const err = e as AxiosError;
+            return rejectWithValue(err.response.data);
+        }
+    }
+)
+
+const getMovieStates = createAsyncThunk<IMovieStates, {id: number}>(
+    "movieSlice/getMovieStates",
+    async ({id}, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.getMovieStates(id);
             return data;
         } catch (e) {
             const err = e as AxiosError;
@@ -57,6 +100,9 @@ const slice = createSlice({
         setSearchingTitle: (state, actions) => {
             state.searchTitle = actions.payload;
         },
+        setMovieId: (state,  actions) => {
+            state.movieId = actions.payload;
+        }
     },
     extraReducers: builder => {
         builder
@@ -68,15 +114,29 @@ const slice = createSlice({
                 state.movies = action.payload.results;
                 state.totalPage = action.payload.total_pages;
             })
+            .addCase(getWatchList.fulfilled, (state, action) => {
+                state.movies = action.payload.results;
+                state.totalPage = action.payload.total_pages;
+            })
+            .addCase(getFavoriteList.fulfilled, (state, action) => {
+                state.movies = action.payload.results;
+                state.totalPage = action.payload.total_pages;
+            })
+            .addCase(getMovieStates.fulfilled, (state, action) => {
+                state.movieStates = action.payload;
+            })
     }
 })
 
-let {reducer: movieReducer, actions} = slice;
+const {reducer: movieReducer, actions} = slice;
 
 const movieActions = {
     ...actions,
     getAll,
-    searchMoviesByName
+    searchMoviesByName,
+    getWatchList,
+    getFavoriteList,
+    getMovieStates
 }
 
 export {movieReducer, movieActions}

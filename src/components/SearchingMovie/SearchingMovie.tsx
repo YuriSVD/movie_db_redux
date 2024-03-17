@@ -3,9 +3,9 @@ import React, {FC} from 'react';
 import {useNavigate} from "react-router-dom";
 
 import {posterURL, urls} from "../../configs";
+import {DateComponent} from "../DateComponent";
 import DummyPoster from "../../dummy_photos/dummy_poster.jpg";
 import {IMovie} from "../../interfaces";
-import {DateComponent} from "../DateComponent";
 
 interface IProps {
     movie: IMovie;

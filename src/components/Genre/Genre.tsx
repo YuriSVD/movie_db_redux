@@ -1,8 +1,7 @@
 import {Chip} from "@mui/material";
 import React, {FC} from 'react';
 
-import {useAppSelector} from "../../hooks";
-import {useGenreQuery} from "../../hooks";
+import {useAppSelector, useGenreQuery} from "../../hooks";
 import {IGenre} from "../../interfaces";
 
 interface IProps {
