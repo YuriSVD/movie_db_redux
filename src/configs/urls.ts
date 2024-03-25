@@ -35,7 +35,8 @@ const urls = {
     watchlist: "/watchlist",
     favorite: "./favorite",
     movies: "/movies",
-    account_states: "/account_states"
+    account_states: "/account_states",
+    collection: "./collection"
 };
 
 export {

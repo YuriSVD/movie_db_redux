@@ -1,10 +1,10 @@
-import React, {FC} from 'react';
-
-import {ICastMember} from "../../interfaces";
-import DummyPhoto from "../../dummy_photos/dummy_person.jpg";
 import {Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material";
-import {posterURL, urls} from "../../configs";
+import React, {FC} from 'react';
 import {useNavigate} from "react-router-dom";
+
+import {posterURL, urls} from "../../configs";
+import DummyPhoto from "../../dummy_photos/dummy_person.jpg";
+import {ICastMember} from "../../interfaces";
 
 interface IProps {
     castMember: ICastMember;

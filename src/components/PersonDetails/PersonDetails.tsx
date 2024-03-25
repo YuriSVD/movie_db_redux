@@ -28,10 +28,10 @@ const PersonDetails: FC<IProps> = ({personDetails}) => {
                             variant={"subtitle1"}>{biography}</Typography>
             </div>
             <div>
-                {birthday && <div style={{color: isDarkTheme ? "white" : "black"}}><DateComponent release_date={birthday}/></div>}
+                {birthday && <div style={{color: isDarkTheme ? "white" : "black"}}><DateComponent time={birthday}/></div>}
                 {birthday && <Typography sx={{color: isDarkTheme ? "white" : "black"}} gutterBottom
                              variant={"body2"}>Birthday</Typography>}
-                {deathday && <div style={{color: isDarkTheme ? "white" : "black"}}><DateComponent release_date={deathday}/></div>}
+                {deathday && <div style={{color: isDarkTheme ? "white" : "black"}}><DateComponent time={deathday}/></div>}
                 {deathday && <Typography sx={{color: isDarkTheme ? "white" : "black"}} gutterBottom variant={"body2"}>Day of
                     Death</Typography>}
                 {place_of_birth && <Typography sx={{color: isDarkTheme ? "white" : "black", fontWeight: "bold"}}

@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, isFulfilled} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 
 import {ICastMember, ICrewMember, IGenre, IMovie, IMovieStates, IPage, IVideo} from "../../interfaces";
@@ -13,7 +13,7 @@ interface IState {
     crew: ICrewMember[];
     videos: IVideo[];
     movieStates: IMovieStates;
-    movieId: number;
+    movieId: number
 }
 
 const initialState: IState = {
@@ -25,10 +25,10 @@ const initialState: IState = {
     crew: [],
     videos: [],
     movieStates: null,
-    movieId: null,
+    movieId: null
 };
 
-const getAll = createAsyncThunk<IPage, {page: string, genreIds?: string}>(
+const getAll = createAsyncThunk<IPage, { page: string, genreIds?: string }>(
     "movieSlice/getAll",
     async ({page, genreIds}, {rejectWithValue}) => {
         try {
@@ -41,7 +41,7 @@ const getAll = createAsyncThunk<IPage, {page: string, genreIds?: string}>(
     }
 )
 
-const searchMoviesByName = createAsyncThunk<IPage, {page: string, query: string}>(
+const searchMoviesByName = createAsyncThunk<IPage, { page: string, query: string }>(
     "movieSlice/searchMoviesByName",
     async ({page, query}, {rejectWithValue}) => {
         try {
@@ -54,7 +54,7 @@ const searchMoviesByName = createAsyncThunk<IPage, {page: string, query: string}
     }
 )
 
-const getWatchList = createAsyncThunk<IPage, {id: number, page?: string}>(
+const getWatchList = createAsyncThunk<IPage, { id: number, page?: string }>(
     "movieSlice/getMovieList",
     async ({id, page}, {rejectWithValue}) => {
         try {
@@ -67,7 +67,7 @@ const getWatchList = createAsyncThunk<IPage, {id: number, page?: string}>(
     }
 )
 
-const getFavoriteList = createAsyncThunk<IPage, {id: number, page?: string}>(
+const getFavoriteList = createAsyncThunk<IPage, { id: number, page?: string }>(
     "movieSlice/getFavoriteList",
     async ({id, page}, {rejectWithValue}) => {
         try {
@@ -80,7 +80,7 @@ const getFavoriteList = createAsyncThunk<IPage, {id: number, page?: string}>(
     }
 )
 
-const getMovieStates = createAsyncThunk<IMovieStates, {id: number}>(
+const getMovieStates = createAsyncThunk<IMovieStates, { id: number }>(
     "movieSlice/getMovieStates",
     async ({id}, {rejectWithValue}) => {
         try {
@@ -100,30 +100,18 @@ const slice = createSlice({
         setSearchingTitle: (state, actions) => {
             state.searchTitle = actions.payload;
         },
-        setMovieId: (state,  actions) => {
+        setMovieId: (state, actions) => {
             state.movieId = actions.payload;
         }
     },
     extraReducers: builder => {
         builder
-            .addCase(getAll.fulfilled, (state, action) => {
-                state.movies = action.payload.results;
-                state.totalPage = action.payload.total_pages;
-            })
-            .addCase(searchMoviesByName.fulfilled, (state, action) => {
-                state.movies = action.payload.results;
-                state.totalPage = action.payload.total_pages;
-            })
-            .addCase(getWatchList.fulfilled, (state, action) => {
-                state.movies = action.payload.results;
-                state.totalPage = action.payload.total_pages;
-            })
-            .addCase(getFavoriteList.fulfilled, (state, action) => {
-                state.movies = action.payload.results;
-                state.totalPage = action.payload.total_pages;
-            })
             .addCase(getMovieStates.fulfilled, (state, action) => {
                 state.movieStates = action.payload;
+            })
+            .addMatcher(isFulfilled(getAll, searchMoviesByName, getFavoriteList, getWatchList), (state, action) => {
+                state.movies = action.payload.results;
+                state.totalPage = action.payload.total_pages;
             })
     }
 })

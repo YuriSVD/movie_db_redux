@@ -1,7 +1,8 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {AxiosError} from "axios";
+
 import {IMovieToList, IUser} from "../../interfaces";
 import {userService} from "../../services";
-import {AxiosError} from "axios";
 
 interface IState {
     user: IUser;

@@ -1,7 +1,8 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {IVideo, IVideoPage} from "../../interfaces";
-import {videoService} from "../../services/video.service";
 import {AxiosError} from "axios";
+
+import {IVideo, IVideoPage} from "../../interfaces";
+import {videoService} from "../../services";
 
 interface IState {
     videos: IVideo[];

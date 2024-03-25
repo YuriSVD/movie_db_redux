@@ -10,7 +10,6 @@ const MoviesPage = () => {
     const {movies} = useAppSelector(state => state.movieReducer);
     const {genreIds} = useAppSelector(state => state.genreReducer);
     const dispatch = useAppDispatch();
-
     useEffect(() => {
         dispatch(movieActions.getAll({page, genreIds}))
     }, [page, genreIds, dispatch]);

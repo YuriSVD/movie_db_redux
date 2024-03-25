@@ -1,18 +1,19 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {AxiosError} from "axios";
+
 import {IGenre, IGenres} from "../../interfaces";
 import {genreService} from "../../services";
-import {AxiosError} from "axios";
 
 interface IState {
     genres: IGenre[];
     selectedGenres: IGenre[],
-    genreIds: string
+    genreIds: string;
 }
 
 const initialState: IState = {
     genres: [],
     selectedGenres: [],
-    genreIds: ""
+    genreIds: "",
 };
 
 const getAll = createAsyncThunk<IGenres, void>(
@@ -36,7 +37,6 @@ const slice = createSlice({
             state.selectedGenres.push(actions.payload);
         },
         removeGenreFromList: (state, actions) => {
-            //state.selectedGenres.filter(genre => genre !== actions.payload)
             state.selectedGenres.splice(actions.payload, 1);
         },
         setGenreIds: (state, actions) => {

@@ -1,8 +1,9 @@
-import React from 'react';
-import {useAppSelector} from "../../hooks";
-import {CastMovie} from "../CastMovie";
 import {Typography} from "@mui/material";
+import React from 'react';
+
+import {CastMovie} from "../CastMovie";
 import css from "./CastMovies.module.css";
+import {useAppSelector} from "../../hooks";
 
 const CastMovies = () => {
     const {castMovies} = useAppSelector(state => state.personReducer);

@@ -1,8 +1,8 @@
 import {useState} from "react";
 
 import {IGenre} from "../interfaces";
-import {useAppDispatch, useAppSelector} from "./redux.hook";
 import {genreActions} from "../redux";
+import {useAppDispatch, useAppSelector} from "./redux.hook";
 
 const useGenreQuery = () => {
     const {selectedGenres} = useAppSelector(state => state.genreReducer);

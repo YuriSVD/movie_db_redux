@@ -1,6 +1,6 @@
 import {apiService} from "./api.service";
 import {urls} from "../configs";
-import {IMovieDetails, IPage} from "../interfaces";
+import {ICollection, IMovieDetails, IPage} from "../interfaces";
 import {IRes} from "../types";
 
 const movieService = {
@@ -9,7 +9,8 @@ const movieService = {
     searchMovies:(page: string, query: string): IRes<IPage> => apiService.get(urls.search + urls.movie, {params: {page, query}}),
     getWatchList: (userId: number, page?: string) => apiService.get(`${urls.account}/${userId}${urls.watchlist}${urls.movies}`, {params: {page}}),
     getFavoriteList: (userId: number, page?: string) => apiService.get(`${urls.account}/${userId}${urls.favorite}${urls.movies}`, {params: {page}}),
-    getMovieStates: (id: number) => apiService.get(`${urls.movie}/${id}${urls.account_states}`)
+    getMovieStates: (id: number) => apiService.get(`${urls.movie}/${id}${urls.account_states}`),
+    getCollection: (id: string): IRes<ICollection> => apiService.get(`${urls.collection}/${id}`)
 }
 
 export {movieService};

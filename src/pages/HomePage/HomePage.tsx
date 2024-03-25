@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 
 import {Carousel, Movies, SearchForm} from "../../components";
-import {useAppDispatch, useAppSelector, usePageQuery} from "../../hooks";
 import css from "./HomePage.module.css";
+import {useAppDispatch, useAppSelector, usePageQuery} from "../../hooks";
 import {movieActions} from "../../redux";
 
 const HomePage = () => {

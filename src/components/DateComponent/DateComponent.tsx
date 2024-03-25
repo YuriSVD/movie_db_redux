@@ -1,16 +1,14 @@
 import {Typography} from "@mui/material";
 import React, {FC} from 'react';
 
-import css from "./DateComponent.module.css";
-
 interface IProps {
-    release_date: string;
+    time: string;
 }
 
-const DateComponent:FC<IProps> = ({release_date}) => {
-    const date = new Date(release_date).toDateString();
+const DateComponent:FC<IProps> = ({time}) => {
+    const date = new Date(time).toDateString();
     return (
-        <Typography className={css.ReleaseDate} variant={"body1"}>
+        <Typography sx={{fontWeight: "bold"}} variant={"body1"}>
             {date.substring(date.indexOf(" ") + 1, date.length)}
         </Typography>
     );

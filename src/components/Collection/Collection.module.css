@@ -1,4 +1,4 @@
-.movieDiv {
+.Collection {
     background-color: #00143ccc;
     padding: 4.17vw;
     box-sizing: border-box;
@@ -7,29 +7,13 @@
     background-position-x: right;
     color: white;
     display: flex;
-    justify-content: space-between;
     position: relative;
     margin-bottom: 0.52vw;
 }
 
-.movieDiv img {
+.Collection img {
     border-radius: 1.04vw;
     height: 23.44vw;
-}
-
-.mainInfo {
-    width: 41.84vw;
-    padding: 0 1.56vw;
-    box-sizing: border-box;
-}
-
-.secondaryInfo {
-    width: 15.62vw;
-    height: 23.65vw;
-}
-
-.zIndex1 {
-    z-index: 1;
 }
 
 .overlay {
@@ -44,19 +28,16 @@
     z-index: 0;
 }
 
-.trailer {
-    position: absolute;
-    top: 4.15vw;
-    left: 28.7vw;
-    z-index: 2;
+.zIndex1 {
+    z-index: 1;
 }
 
-.buttonsDiv {
+.info {
+    width: 76.66vw;
+}
+.info div {
     display: flex;
+    flex-direction: column;
     align-items: center;
-}
-
-.buttonsDiv button {
-    padding: 0;
-    min-width: 30px;
+    padding: 0 200px;
 }

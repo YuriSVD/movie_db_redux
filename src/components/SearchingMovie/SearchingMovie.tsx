@@ -31,7 +31,7 @@ const SearchingMovie:FC<IProps> = ({movie}) => {
                 />
                 <CardContent sx={{paddingTop: 0}}>
                     <Typography variant={"h5"} component={"div"}>{title}</Typography>
-                    <DateComponent release_date={release_date}/>
+                    <DateComponent time={release_date}/>
                     <Typography variant={"subtitle1"}>{overview}</Typography>
                 </CardContent>
             </CardActionArea>

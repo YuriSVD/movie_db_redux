@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
-import {CastMovies, CrewMovies, PersonDetails} from "../../components";
-import {IPersonDetails} from "../../interfaces";
 import {useLoaderData} from "react-router-dom";
+
+import {CastMovies, CrewMovies, PersonDetails} from "../../components";
 import {useAppDispatch} from "../../hooks";
-import {personActions} from "../../redux";
+import {IPersonDetails} from "../../interfaces";
 import css from "./PersonPage.module.css";
+import {personActions} from "../../redux";
 
 type LoaderData = {
     data: IPersonDetails;

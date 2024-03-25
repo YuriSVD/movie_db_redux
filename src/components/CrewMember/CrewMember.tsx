@@ -1,10 +1,10 @@
 import {Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material";
 import React, {FC} from 'react';
+import {useNavigate} from "react-router-dom";
 
 import {posterURL, urls} from "../../configs";
 import DummyPhoto from "../../dummy_photos/dummy_person.jpg";
 import {ICrewMember} from "../../interfaces";
-import {useNavigate} from "react-router-dom";
 
 interface IProps {
     crewMember: ICrewMember;

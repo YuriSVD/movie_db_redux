@@ -14,7 +14,6 @@ const MovieDetailsPage = () => {
         <div>
             <MovieDetails movieDetails={data}/>
             <SelectedCastMembers/>
-            {/*<SelectedVideos/>*/}
         </div>
     );
 };

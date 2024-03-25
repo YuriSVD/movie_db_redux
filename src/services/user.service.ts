@@ -1,7 +1,7 @@
-import {IRes} from "../types";
-import {IMovieToList, IUser} from "../interfaces";
 import {apiService} from "./api.service";
 import {urls} from "../configs";
+import {IMovieToList, IUser} from "../interfaces";
+import {IRes} from "../types";
 
 const userService = {
     getUser: (): IRes<IUser> => apiService.get(`${urls.account}`),

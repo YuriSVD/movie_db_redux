@@ -1,5 +1,5 @@
-import {useAppDispatch} from "./redux.hook";
 import {switchActions} from "../redux";
+import {useAppDispatch} from "./redux.hook";
 
 const useSwitcherQuery = () => {
     const dispatch = useAppDispatch();

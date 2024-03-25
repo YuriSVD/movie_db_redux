@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
+
+import {Movies, PaginationComponent} from "../../components";
 import {useAppDispatch, useAppSelector, usePageQuery} from "../../hooks";
 import {movieActions} from "../../redux";
-import {Movies, PaginationComponent} from "../../components";
 import css from "./UserFavoriteListPage.module.css";
 
 const UserFavoriteListPage = () => {

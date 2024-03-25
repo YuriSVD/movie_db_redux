@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 
+import {IMovie} from "../../interfaces";
 import {SearchingMovie} from "../SearchingMovie";
 import css from "./SearchingMovies.module.css"
-import {IMovie} from "../../interfaces";
 
 interface IProps {
     movies: IMovie[]

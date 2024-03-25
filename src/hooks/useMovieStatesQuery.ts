@@ -1,5 +1,5 @@
-import {useAppDispatch, useAppSelector} from "./redux.hook";
 import {userActions} from "../redux";
+import {useAppDispatch, useAppSelector} from "./redux.hook";
 
 const useMovieStatesQuery = () => {
     const {movieStates, movieId} = useAppSelector(state => state.movieReducer);

@@ -2,9 +2,9 @@ import {ArrowBackIos, ArrowForwardIos} from "@mui/icons-material";
 import React, {FC} from 'react';
 
 import css from "./Carousel.module.css";
+import {useCarouselQuery} from "../../hooks";
 import {IMovie} from "../../interfaces";
 import {MovieCarousel} from "../MoviesCarousel";
-import {useCarouselQuery} from "../../hooks";
 
 interface IProps {
     movies: IMovie[];

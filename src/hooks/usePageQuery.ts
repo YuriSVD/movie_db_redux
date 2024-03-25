@@ -1,5 +1,5 @@
-import {useSearchParams} from "react-router-dom";
 import {ChangeEvent} from "react";
+import {useSearchParams} from "react-router-dom";
 
 const usePageQuery = () => {
     const [query, setQuery] = useSearchParams({page: "1"});

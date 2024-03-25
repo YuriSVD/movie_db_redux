@@ -2,8 +2,7 @@ import {Typography} from "@mui/material";
 import React from 'react';
 
 import {CrewMember} from "../CrewMember";
-import {useAppSelector} from "../../hooks";
-import {useCrewQuery} from "../../hooks";
+import {useAppSelector, useCrewQuery} from "../../hooks";
 
 const CrewMembers = () => {
     const {isDarkTheme} = useAppSelector(state => state.switchReducer);

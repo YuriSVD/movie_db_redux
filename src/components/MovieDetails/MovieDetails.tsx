@@ -1,8 +1,9 @@
 import {Button, Tooltip, Typography} from "@mui/material";
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
-import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
+import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import React, {FC, useEffect} from 'react';
 import ReactPlayer from "react-player";
 
@@ -16,6 +17,7 @@ import css from "./MovieDetails.module.css";
 import {MovieGenres} from "../MovieGenres";
 import {RatingStar} from "../RatingStar";
 import {movieActions, videoActions} from "../../redux";
+import {useNavigate} from "react-router-dom";
 
 interface IProps {
     movieDetails: IMovieDetails
@@ -33,7 +35,9 @@ const MovieDetails: FC<IProps> = ({movieDetails}) => {
         backdrop_path,
         budget,
         runtime,
-        revenue
+        revenue,
+        tagline,
+        belongs_to_collection
     } = movieDetails;
     const {movieStates} = useAppSelector(state => state.movieReducer);
     const {user, trigger} = useAppSelector(state => state.userReducer);
@@ -50,6 +54,7 @@ const MovieDetails: FC<IProps> = ({movieDetails}) => {
         crewMember.job === "Director").map(director => director.name);
     const trailer = videos.find(video => video.type === "Trailer");
     const {setRemoveFromFavoriteList, setRemoveFromWatchList} = useMovieStatesQuery();
+    const navigate = useNavigate();
     return (
         <div>
             <div className={css.movieDiv}
@@ -70,12 +75,16 @@ const MovieDetails: FC<IProps> = ({movieDetails}) => {
                                              onEnded={playStopTrailer}/>}
                     <div style={{display: "flex"}}>
                         <Typography variant={"h3"}>{title}</Typography>
-
                     </div>
                     <RatingStar rating={vote_average}/>
                     <div className={css.buttonsDiv}>
                         <MovieGenres genres={genres}/>
-                        {user && movieStates &&
+                        {belongs_to_collection && <Tooltip title={belongs_to_collection.name}>
+                            <Button color={"inherit"} onClick={() => navigate(`/collection/${belongs_to_collection.id}`)}>
+                                <VideoLibraryIcon/>
+                            </Button>
+                        </Tooltip>}
+                        {user &&
                             <div>
                                 <Tooltip title={movieStates.watchlist ? "delete from Watch" : "add to Watch"}>
                                     <Button color={"inherit"} onClick={setRemoveFromWatchList}>
@@ -94,22 +103,23 @@ const MovieDetails: FC<IProps> = ({movieDetails}) => {
                             </div>
                         }
                     </div>
-                    <Typography align={"justify"} variant={"subtitle1"}>{overview}</Typography>
+                    <Typography fontStyle={"italic"}>{tagline}</Typography>
+                    <Typography sx={{marginTop: "0.5vw"}} align={"justify"} variant={"subtitle1"}>{overview}</Typography>
                 </div>
                 <div className={`${css.secondaryInfo} ${css.zIndex1}`}>
-                    <Typography className={css.bold} variant={"body1"}>{directors.join(", ")}</Typography>
-                    {!!directors.length && <Typography gutterBottom variant={"body2"}>Director</Typography>}
-                    {!!release_date && <DateComponent release_date={release_date}/>}
+                    <Typography fontWeight={"bold"} variant={"body1"}>{directors.join(", ")}</Typography>
+                    {!!directors.length && <Typography gutterBottom variant={"body2"}>{directors.length > 1 ? "Directors" : "Director"}</Typography>}
+                    {!!release_date && <DateComponent time={release_date}/>}
                     {!!release_date && <Typography gutterBottom variant={"body2"}>Release Date</Typography>}
-                    {!!runtime && <Typography className={css.bold} variant={"body1"}>
+                    {!!runtime && <Typography fontWeight={"bold"} variant={"body1"}>
                         {`${Math.floor(runtime / 60)}h ${runtime % 60}m`}
                     </Typography>}
                     {!!runtime && <Typography gutterBottom variant={"body2"}>Run Time</Typography>}
-                    {!!budget && <Typography className={css.bold} variant={"body1"}>
+                    {!!budget && <Typography fontWeight={"bold"} variant={"body1"}>
                         {budget.toLocaleString() + "$"}
                     </Typography>}
                     {!!budget && <Typography gutterBottom variant={"body2"}>Budget</Typography>}
-                    {!!revenue && <Typography className={css.bold} variant={"body1"}>
+                    {!!revenue && <Typography fontWeight={"bold"} variant={"body1"}>
                         {revenue.toLocaleString() + "$"}
                     </Typography>}
                     {!!revenue && <Typography gutterBottom variant={"body2"}>Revenue</Typography>}

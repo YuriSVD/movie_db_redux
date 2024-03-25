@@ -1,10 +1,11 @@
+import {Typography} from "@mui/material";
 import React, {FC} from 'react';
-import {ICastMovie} from "../../interfaces";
+import {Link} from "react-router-dom";
+
 import css from "./CastMovie.module.css";
 import {DateComponent} from "../DateComponent";
-import {Typography} from "@mui/material";
 import {useAppSelector} from "../../hooks";
-import {Link} from "react-router-dom";
+import {ICastMovie} from "../../interfaces";
 
 interface IProps {
     castMovie: ICastMovie;
@@ -16,7 +17,7 @@ const CastMovie:FC<IProps> = ({castMovie}) => {
     return (
         <div className={css.CastMovie}>
             <div style={{color: isDarkTheme ? "white" : "black"}} className={css.date}>
-                <DateComponent release_date={release_date}/>
+                <DateComponent time={release_date}/>
             </div>
             <div className={css.title}>
                 <Link to={`/movies/${id}`}>

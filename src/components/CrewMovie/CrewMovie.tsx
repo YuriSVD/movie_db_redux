@@ -1,10 +1,11 @@
+import {Typography} from "@mui/material";
 import React, {FC} from 'react';
-import {ICrewMovie} from "../../interfaces";
-import {useAppSelector} from "../../hooks";
+import {Link} from "react-router-dom";
+
 import css from "./CrewMovie.module.css";
 import {DateComponent} from "../DateComponent";
-import {Link} from "react-router-dom";
-import {Typography} from "@mui/material";
+import {useAppSelector} from "../../hooks";
+import {ICrewMovie} from "../../interfaces";
 
 interface IProps {
     crewMovie: ICrewMovie;
@@ -16,7 +17,7 @@ const CrewMovie:FC<IProps> = ({crewMovie}) => {
     return (
         <div className={css.CrewMovie}>
             <div style={{color: isDarkTheme ? "white" : "black"}} className={css.date}>
-                <DateComponent release_date={release_date}/>
+                <DateComponent time={release_date}/>
             </div>
             <div className={css.title}>
                 <Link to={`/movies/${id}`}>
