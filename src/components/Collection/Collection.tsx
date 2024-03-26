@@ -10,7 +10,6 @@ interface IProps {
     collection: ICollection;
 }
 const Collection:FC<IProps> = ({collection}) => {
-    console.log(collection);
     const {name, overview, poster_path, backdrop_path} = collection;
     return (
         <div className={css.Collection}

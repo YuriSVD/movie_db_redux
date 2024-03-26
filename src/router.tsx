@@ -1,18 +1,7 @@
 import {createBrowserRouter, Navigate} from "react-router-dom";
 
 import {MainLayout} from "./layouts";
-import {
-    CastAndCrewPage,
-    CollectionPage,
-    GenrePage,
-    HomePage,
-    MovieDetailsPage,
-    MoviesPage,
-    PersonPage,
-    SearchPage,
-    UserFavoriteListPage,
-    UserWatchListPage
-} from "./pages";
+import {CastAndCrewPage, CollectionPage, GenrePage, HomePage, MovieDetailsPage, MoviesPage, PersonPage, SearchPage, UserFavoriteListPage, UserWatchListPage} from "./pages";
 import {movieService, personService} from "./services";
 
 const router = createBrowserRouter([

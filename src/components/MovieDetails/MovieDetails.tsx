@@ -6,6 +6,7 @@ import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import React, {FC, useEffect} from 'react';
 import ReactPlayer from "react-player";
+import {useNavigate} from "react-router-dom";
 
 import {posterURL, urls, youtubeURL} from "../../configs";
 import {DateComponent} from "../DateComponent";
@@ -17,7 +18,6 @@ import css from "./MovieDetails.module.css";
 import {MovieGenres} from "../MovieGenres";
 import {RatingStar} from "../RatingStar";
 import {movieActions, videoActions} from "../../redux";
-import {useNavigate} from "react-router-dom";
 
 interface IProps {
     movieDetails: IMovieDetails
